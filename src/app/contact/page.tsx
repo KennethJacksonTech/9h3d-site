@@ -1,3 +1,5 @@
+import ContactForm from "@/components/ContactForm";
+
 export default function Contact() {
   return (
     <>
@@ -22,41 +24,7 @@ export default function Contact() {
             <h2 className="font-heading text-[28px] font-bold text-fg-primary mb-8">
               Send a Message
             </h2>
-            {/* TODO: Integrate Formspree or Netlify Forms for backend submission */}
-            <form action="#" className="flex flex-col gap-5">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                <input
-                  type="text"
-                  name="name"
-                  placeholder="Name"
-                  className="w-full px-4 py-3 rounded-lg border border-border-subtle bg-surface-primary font-body text-[15px] text-fg-primary placeholder:text-fg-secondary/50 focus:outline-none focus:border-accent transition-colors"
-                />
-                <input
-                  type="email"
-                  name="email"
-                  placeholder="Email"
-                  className="w-full px-4 py-3 rounded-lg border border-border-subtle bg-surface-primary font-body text-[15px] text-fg-primary placeholder:text-fg-secondary/50 focus:outline-none focus:border-accent transition-colors"
-                />
-              </div>
-              <input
-                type="text"
-                name="subject"
-                placeholder="Subject"
-                className="w-full px-4 py-3 rounded-lg border border-border-subtle bg-surface-primary font-body text-[15px] text-fg-primary placeholder:text-fg-secondary/50 focus:outline-none focus:border-accent transition-colors"
-              />
-              <textarea
-                name="message"
-                placeholder="Message"
-                rows={6}
-                className="w-full px-4 py-3 rounded-lg border border-border-subtle bg-surface-primary font-body text-[15px] text-fg-primary placeholder:text-fg-secondary/50 focus:outline-none focus:border-accent transition-colors resize-none"
-              />
-              <button
-                type="submit"
-                className="self-start bg-accent text-white font-body text-[14px] font-semibold tracking-[1px] px-6 py-3 rounded-lg hover:bg-accent-secondary transition-colors"
-              >
-                Send Message
-              </button>
-            </form>
+            <ContactForm />
           </div>
 
           {/* Contact Info */}
