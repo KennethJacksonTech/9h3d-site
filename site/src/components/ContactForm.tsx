@@ -2,7 +2,7 @@
 
 import { useState, type FormEvent } from "react";
 
-const FORM_ENDPOINT = "https://forms.kennethjackson.tech/submit";
+const FORM_ENDPOINT = "https://formspree.io/f/xpqokvqv";
 const INPUT_CLASS =
   "w-full px-4 py-3 rounded-lg border border-border-subtle bg-surface-primary font-body text-[15px] text-fg-primary placeholder:text-fg-secondary/50 focus:outline-none focus:border-accent transition-colors";
 
@@ -29,16 +29,15 @@ export default function ContactForm() {
     try {
       const res = await fetch(FORM_ENDPOINT, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { Accept: "application/json" },
         body: JSON.stringify(data),
       });
-      const result = await res.json();
-      if (res.ok && result.success) {
+      if (res.ok) {
         setStatus("success");
         form.reset();
       } else {
         setStatus("error");
-        setErrorMessage(result.error || "Something went wrong. Please try again.");
+        setErrorMessage("Something went wrong. Please try again.");
       }
     } catch {
       setStatus("error");
