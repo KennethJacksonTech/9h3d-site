@@ -38,7 +38,7 @@ export default function Blog() {
           aria-hidden="true"
           className="absolute inset-0 w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-[#F2EDE6]/85" />
+        <div className="absolute inset-0 bg-[#F2EDE6]/50" />
         <div className="relative z-10">
           <p className="font-body text-[13px] font-semibold tracking-[3px] uppercase text-accent mb-6">
             The Blog
