@@ -6,18 +6,24 @@ const recentPosts = [
     date: "February 28, 2026",
     excerpt:
       "How the colors we choose reflect the emotions of our spiritual journey — and what Karen's latest painting reveals about devotion.",
+    image: "https://vsenrznfzpmszljettmn.supabase.co/storage/v1/object/public/media/2f23b09f-27b7-47bf-845e-ac452357329c/paintings/gods-work/89d529d5-weeping-woman.jpg",
+    imageAlt: "Weeping Woman — oil painting by Karen Wolfram",
   },
   {
     title: "Teaching Art, Teaching Faith",
     date: "February 10, 2026",
     excerpt:
       "A look inside Karen's art education philosophy and how she integrates ministry into every lesson.",
+    image: "https://vsenrznfzpmszljettmn.supabase.co/storage/v1/object/public/media/2f23b09f-27b7-47bf-845e-ac452357329c/paintings/gods-creation/9c58a8bb-in-the-kitchen.jpg",
+    imageAlt: "In The Kitchen — oil painting by Karen Wolfram",
   },
   {
     title: "New Episode: Painting Sunsets",
     date: "January 22, 2026",
     excerpt:
       "The latest episode of The Karen Wolfram Project explores the beauty of West Texas sunsets and the techniques behind capturing God's light.",
+    image: "https://vsenrznfzpmszljettmn.supabase.co/storage/v1/object/public/media/2f23b09f-27b7-47bf-845e-ac452357329c/paintings/gods-creation/3c6c95fe-the-last-outcrop.jpg",
+    imageAlt: "The Last Outcrop — oil painting by Karen Wolfram",
   },
 ];
 
@@ -40,7 +46,13 @@ export default function Blog() {
       {/* Featured Post */}
       <section className="bg-surface-primary py-20 md:py-24 px-6">
         <div className="max-w-5xl mx-auto flex flex-col md:flex-row gap-10 items-start">
-          <div className="w-full md:w-1/2 aspect-[4/3] bg-border-subtle rounded-xl" />
+          <div className="w-full md:w-1/2 aspect-[4/3] bg-border-subtle rounded-xl overflow-hidden">
+            <img
+              src="https://vsenrznfzpmszljettmn.supabase.co/storage/v1/object/public/media/2f23b09f-27b7-47bf-845e-ac452357329c/paintings/gods-work/2827f54c-the-dove.jpg"
+              alt="The Dove — oil painting by Karen Wolfram"
+              className="w-full h-full object-cover rounded-xl"
+            />
+          </div>
           <div className="w-full md:w-1/2">
             <span className="inline-block font-body text-[11px] font-semibold tracking-[2px] uppercase bg-accent text-white px-3 py-1 rounded mb-4">
               Featured
@@ -78,7 +90,14 @@ export default function Blog() {
                 key={post.title}
                 className="bg-surface-primary rounded-xl overflow-hidden"
               >
-                <div className="w-full aspect-[4/3] bg-border-subtle" />
+                <div className="w-full aspect-[4/3] bg-border-subtle overflow-hidden">
+                  <img
+                    src={post.image}
+                    alt={post.imageAlt}
+                    loading="lazy"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
                 <div className="p-6">
                   <p className="font-body text-[13px] text-fg-secondary mb-2">
                     {post.date}

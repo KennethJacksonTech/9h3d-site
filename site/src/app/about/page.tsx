@@ -32,7 +32,13 @@ export default function About() {
       {/* Bio Section */}
       <section className="bg-surface-primary py-20 md:py-24 px-6">
         <div className="max-w-5xl mx-auto flex flex-col md:flex-row gap-12 items-start">
-          <div className="w-full md:w-[400px] shrink-0 aspect-[5/6] bg-border-subtle rounded-xl" />
+          <div className="w-full md:w-[400px] shrink-0 aspect-[5/6] bg-border-subtle rounded-xl overflow-hidden">
+            <img
+              src="https://vsenrznfzpmszljettmn.supabase.co/storage/v1/object/public/media/2f23b09f-27b7-47bf-845e-ac452357329c/paintings/gods-work/5aa592fa-planting-and-pruning.jpg"
+              alt="Planting and Pruning — oil painting by Karen Wolfram"
+              className="w-full h-full object-cover rounded-xl"
+            />
+          </div>
           <div>
             <h2 className="font-heading text-[36px] font-bold text-fg-primary mb-6">
               A Life Devoted to Art &amp; Faith

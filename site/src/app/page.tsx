@@ -76,7 +76,13 @@ export default function Home() {
       {/* Karen Wolfram Project */}
       <section className="bg-surface-primary py-20 md:py-24 px-6">
         <div className="max-w-5xl mx-auto flex flex-col md:flex-row items-center gap-12">
-          <div className="w-full md:w-1/2 aspect-video bg-border-subtle rounded-xl" />
+          <div className="w-full md:w-1/2 aspect-video bg-border-subtle rounded-xl overflow-hidden">
+            <img
+              src="https://vsenrznfzpmszljettmn.supabase.co/storage/v1/object/public/media/2f23b09f-27b7-47bf-845e-ac452357329c/paintings/gods-creation/95328657-natural-terrace.jpg"
+              alt="Natural Terrace — oil painting by Karen Wolfram"
+              className="w-full h-full object-cover rounded-xl"
+            />
+          </div>
           <div className="w-full md:w-1/2">
             <p className="font-body text-[13px] font-semibold tracking-[3px] uppercase text-accent mb-4">
               The Karen Wolfram Project
