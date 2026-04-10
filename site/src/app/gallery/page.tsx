@@ -1,22 +1,12 @@
 "use client";
 
 import { useState } from "react";
+import { paintings, type Collection } from "@/data/paintings";
 
-type Collection = "All Works" | "God's Work" | "God's Creation";
-
-const paintings = [
-  { title: "The Good Shepherd", collection: "God's Work" as const, medium: "Oil on Canvas" },
-  { title: "Mountain Majesty", collection: "God's Creation" as const, medium: "Oil on Canvas" },
-  { title: "Path of Light", collection: "God's Work" as const, medium: "Oil on Canvas" },
-  { title: "Texas Wildflowers", collection: "God's Creation" as const, medium: "Oil on Canvas" },
-  { title: "The Last Supper", collection: "God's Work" as const, medium: "Oil on Canvas" },
-  { title: "Palo Duro Canyon", collection: "God's Creation" as const, medium: "Oil on Canvas" },
-];
-
-const filters: Collection[] = ["All Works", "God's Work", "God's Creation"];
+const filters: (Collection | "All Works")[] = ["All Works", "God's Work", "God's Creation"];
 
 export default function Gallery() {
-  const [active, setActive] = useState<Collection>("All Works");
+  const [active, setActive] = useState<Collection | "All Works">("All Works");
 
   const filtered =
     active === "All Works"
@@ -61,8 +51,15 @@ export default function Gallery() {
           {/* Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {filtered.map((painting) => (
-              <div key={painting.title} className="flex flex-col">
-                <div className="w-full aspect-[3/4] bg-border-subtle rounded-xl mb-4" />
+              <div key={painting.slug} className="flex flex-col">
+                <div className="w-full aspect-[3/4] bg-border-subtle rounded-xl mb-4 overflow-hidden">
+                  <img
+                    src={painting.imageUrl}
+                    alt={painting.alt}
+                    loading="lazy"
+                    className="w-full h-full object-cover rounded-xl"
+                  />
+                </div>
                 <h3 className="font-heading text-[17px] font-semibold text-fg-primary">
                   {painting.title}
                 </h3>

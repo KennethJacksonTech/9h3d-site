@@ -14,7 +14,7 @@
 |-------|------|-------------|
 | `/` | `src/app/page.tsx` | Hero, Mission Statement, Gallery Preview (3 cards), Karen Wolfram Project, CTA Banner |
 | `/about` | `src/app/about/page.tsx` | Hero, Bio (portrait + text), Collections (2 cards), CTA Banner |
-| `/gallery` | `src/app/gallery/page.tsx` | Hero, Filter Tabs (All/God's Work/God's Creation), Painting Grid (6 items) |
+| `/gallery` | `src/app/gallery/page.tsx` | Hero, Filter Tabs (All/God's Work/God's Creation), Painting Grid (32 paintings from Gonzo CMS) |
 | `/blog` | `src/app/blog/page.tsx` | Hero, Featured Post, Recent Posts Grid (3 cards) |
 | `/contact` | `src/app/contact/page.tsx` | Hero, Contact Form + Contact Info |
 
@@ -55,12 +55,12 @@
 
 - Build: `npm run build` (static export to `out/`)
 - No auto-push — Vercel deploys on push, so push manually
-- All images are placeholders (solid `#D4CFC7` blocks with rounded corners)
+- 32 paintings served from Gonzo CMS (Supabase storage CDN); 6 are thumbnail-only (150px), 3 are 600px — rest are full-res
 - Contact form is visual only — needs Formspree/Netlify Forms integration
 
 ## What's Next
 
-- Replace placeholder images with real painting photos from Walter
+- ~~Replace placeholder images~~ — Done: 32 paintings wired from Gonzo CMS (Supabase CDN)
 - Integrate contact form backend
 - Add real blog content / CMS
 - YouTube embed for Karen Wolfram Project section

@@ -1,10 +1,5 @@
 import Link from "next/link";
-
-const featuredPaintings = [
-  { title: "The Good Shepherd", collection: "God's Work" },
-  { title: "Mountain Majesty", collection: "God's Creation" },
-  { title: "Path of Light", collection: "God's Work" },
-];
+import { featuredPaintings } from "@/data/paintings";
 
 export default function Home() {
   return (
@@ -57,8 +52,15 @@ export default function Home() {
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {featuredPaintings.map((painting) => (
-              <div key={painting.title} className="flex flex-col items-center">
-                <div className="w-full aspect-[3/4] bg-border-subtle rounded-xl mb-4" />
+              <div key={painting.slug} className="flex flex-col items-center">
+                <div className="w-full aspect-[3/4] bg-border-subtle rounded-xl mb-4 overflow-hidden">
+                  <img
+                    src={painting.imageUrl}
+                    alt={painting.alt}
+                    loading="lazy"
+                    className="w-full h-full object-cover rounded-xl"
+                  />
+                </div>
                 <h3 className="font-heading text-[17px] font-semibold text-fg-primary">
                   {painting.title}
                 </h3>
