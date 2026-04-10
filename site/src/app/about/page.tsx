@@ -17,16 +17,25 @@ export default function About() {
   return (
     <>
       {/* Hero */}
-      <section className="bg-surface-secondary py-24 md:py-32 text-center px-6">
-        <p className="font-body text-[13px] font-semibold tracking-[3px] uppercase text-accent mb-6">
-          About the Artist
-        </p>
-        <h1 className="font-heading text-[40px] md:text-[60px] font-bold text-fg-primary leading-tight mb-4">
-          Karen Wolfram
-        </h1>
-        <p className="font-body text-[17px] text-fg-secondary">
-          Artist &middot; Teacher &middot; Minister
-        </p>
+      <section className="relative py-24 md:py-32 text-center px-6 overflow-hidden">
+        <img
+          src="https://vsenrznfzpmszljettmn.supabase.co/storage/v1/object/public/media/2f23b09f-27b7-47bf-845e-ac452357329c/paintings/gods-creation/7c3597fe-garden-walk.jpg"
+          alt=""
+          aria-hidden="true"
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-[#F2EDE6]/85" />
+        <div className="relative z-10">
+          <p className="font-body text-[13px] font-semibold tracking-[3px] uppercase text-accent mb-6">
+            About the Artist
+          </p>
+          <h1 className="font-heading text-[40px] md:text-[60px] font-bold text-fg-primary leading-tight mb-4">
+            Karen Wolfram
+          </h1>
+          <p className="font-body text-[17px] text-fg-secondary">
+            Artist &middot; Teacher &middot; Minister
+          </p>
+        </div>
       </section>
 
       {/* Bio Section */}

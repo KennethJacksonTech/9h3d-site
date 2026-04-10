@@ -5,23 +5,32 @@ export default function Home() {
   return (
     <>
       {/* Hero */}
-      <section className="bg-surface-secondary py-24 md:py-32 text-center px-6">
-        <p className="font-body text-[13px] font-semibold tracking-[3px] uppercase text-accent mb-6">
-          A Ministry of Art &amp; Faith
-        </p>
-        <h1 className="font-heading text-[40px] md:text-[60px] font-bold text-fg-primary leading-tight mb-6">
-          9th Hour 3rd Day Ministries
-        </h1>
-        <p className="font-body text-[17px] text-fg-secondary max-w-xl mx-auto leading-relaxed mb-10">
-          Sharing God&apos;s love through the beauty of art. Paintings,
-          teachings, and a creative ministry rooted in faith.
-        </p>
-        <Link
-          href="/gallery"
-          className="inline-block bg-accent text-white font-body text-[14px] font-semibold tracking-[1px] px-6 py-3 rounded-lg hover:bg-accent-secondary transition-colors"
-        >
-          Explore the Gallery
-        </Link>
+      <section className="relative py-24 md:py-32 text-center px-6 overflow-hidden">
+        <img
+          src="https://vsenrznfzpmszljettmn.supabase.co/storage/v1/object/public/media/2f23b09f-27b7-47bf-845e-ac452357329c/paintings/gods-creation/a72fdbe5-a-shaded-pond.jpg"
+          alt=""
+          aria-hidden="true"
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-[#F2EDE6]/85" />
+        <div className="relative z-10">
+          <p className="font-body text-[13px] font-semibold tracking-[3px] uppercase text-accent mb-6">
+            A Ministry of Art &amp; Faith
+          </p>
+          <h1 className="font-heading text-[40px] md:text-[60px] font-bold text-fg-primary leading-tight mb-6">
+            9th Hour 3rd Day Ministries
+          </h1>
+          <p className="font-body text-[17px] text-fg-secondary max-w-xl mx-auto leading-relaxed mb-10">
+            Sharing God&apos;s love through the beauty of art. Paintings,
+            teachings, and a creative ministry rooted in faith.
+          </p>
+          <Link
+            href="/gallery"
+            className="inline-block bg-accent text-white font-body text-[14px] font-semibold tracking-[1px] px-6 py-3 rounded-lg hover:bg-accent-secondary transition-colors"
+          >
+            Explore the Gallery
+          </Link>
+        </div>
       </section>
 
       {/* Mission Statement */}

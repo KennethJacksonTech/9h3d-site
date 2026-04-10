@@ -31,16 +31,25 @@ export default function Blog() {
   return (
     <>
       {/* Hero */}
-      <section className="bg-surface-secondary py-24 md:py-32 text-center px-6">
-        <p className="font-body text-[13px] font-semibold tracking-[3px] uppercase text-accent mb-6">
-          The Blog
-        </p>
-        <h1 className="font-heading text-[40px] md:text-[60px] font-bold text-fg-primary leading-tight mb-4">
-          Stories of Art &amp; Faith
-        </h1>
-        <p className="font-body text-[17px] text-fg-secondary">
-          Reflections, lessons, and behind-the-scenes from the studio.
-        </p>
+      <section className="relative py-24 md:py-32 text-center px-6 overflow-hidden">
+        <img
+          src="https://vsenrznfzpmszljettmn.supabase.co/storage/v1/object/public/media/2f23b09f-27b7-47bf-845e-ac452357329c/paintings/gods-work/c7ee32dc-rebuilding-the-temple.jpg"
+          alt=""
+          aria-hidden="true"
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-[#F2EDE6]/85" />
+        <div className="relative z-10">
+          <p className="font-body text-[13px] font-semibold tracking-[3px] uppercase text-accent mb-6">
+            The Blog
+          </p>
+          <h1 className="font-heading text-[40px] md:text-[60px] font-bold text-fg-primary leading-tight mb-4">
+            Stories of Art &amp; Faith
+          </h1>
+          <p className="font-body text-[17px] text-fg-secondary">
+            Reflections, lessons, and behind-the-scenes from the studio.
+          </p>
+        </div>
       </section>
 
       {/* Featured Post */}
