@@ -12,6 +12,20 @@
   --border-subtle: #D4CFC7;
 }
 
+/* — SiteKit GonzoForm CSS-var compat (added 2026-05-16) — */
+:root {
+  --color-bg: var(--surface-primary);
+  --color-text: var(--foreground-primary);
+  --color-text-secondary: var(--foreground-secondary);
+  --color-text-dim: var(--foreground-secondary);
+  --color-primary: var(--accent-primary);
+  --color-form-border: var(--border-subtle);
+  --color-form-border-focus: var(--accent-primary);
+  --color-border: var(--border-subtle);
+  --color-surface: var(--surface-secondary);
+  --color-error: #dc2626;
+}
+
 @theme inline {
   --color-surface-primary: var(--surface-primary);
   --color-surface-secondary: var(--surface-secondary);

@@ -1,6 +1,9 @@
-import ContactForm from "@/components/ContactForm";
+import { getForm, GONZO_API_BASE, GONZO_ORG_SLUG } from "@/lib/gonzo";
+import GonzoForm from "@/components/gonzo-form";
 
-export default function Contact() {
+export default async function Contact() {
+  const form = await getForm("contact");
+
   return (
     <>
       {/* Hero */}
@@ -33,7 +36,21 @@ export default function Contact() {
             <h2 className="font-heading text-[28px] font-bold text-fg-primary mb-8">
               Send a Message
             </h2>
-            <ContactForm />
+            {form ? (
+              <GonzoForm
+                form={form}
+                apiBase={GONZO_API_BASE}
+                orgSlug={GONZO_ORG_SLUG}
+              />
+            ) : (
+              <p className="font-body text-[15px] text-fg-secondary">
+                Our online form is temporarily unavailable. Please email{" "}
+                <a href="mailto:walttoday@gmail.com" className="text-accent underline">
+                  walttoday@gmail.com
+                </a>
+                {" "}directly.
+              </p>
+            )}
           </div>
 
           {/* Contact Info */}
