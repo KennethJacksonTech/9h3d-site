@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { featuredPaintings } from "@/data/paintings";
+import FeaturedPaintings from "@/components/FeaturedPaintings";
 
 export default function Home() {
   return (
@@ -59,26 +59,7 @@ export default function Home() {
           <h2 className="font-heading text-[36px] md:text-[42px] font-bold text-fg-primary mb-12">
             From the Studio
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {featuredPaintings.map((painting) => (
-              <div key={painting.slug} className="flex flex-col items-center">
-                <div className="w-full aspect-[3/4] bg-border-subtle rounded-xl mb-4 overflow-hidden">
-                  <img
-                    src={painting.imageUrl}
-                    alt={painting.alt}
-                    loading="lazy"
-                    className="w-full h-full object-cover rounded-xl"
-                  />
-                </div>
-                <h3 className="font-heading text-[17px] font-semibold text-fg-primary">
-                  {painting.title}
-                </h3>
-                <p className="font-body text-[14px] text-fg-secondary mt-1">
-                  {painting.collection}
-                </p>
-              </div>
-            ))}
-          </div>
+          <FeaturedPaintings />
         </div>
       </section>
 

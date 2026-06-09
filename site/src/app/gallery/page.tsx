@@ -1,17 +1,26 @@
 "use client";
 
-import { useState } from "react";
-import { paintings, type Collection } from "@/data/paintings";
-
-const filters: (Collection | "All Works")[] = ["All Works", "God's Work", "God's Creation"];
+import { useEffect, useState } from "react";
+import { fetchGalleryGroups, type GalleryGroup } from "@/lib/gonzo";
 
 export default function Gallery() {
-  const [active, setActive] = useState<Collection | "All Works">("All Works");
+  const [groups, setGroups] = useState<GalleryGroup[] | null>(null);
+  const [error, setError] = useState(false);
+  const [active, setActive] = useState("All Works");
 
+  useEffect(() => {
+    fetchGalleryGroups()
+      .then(setGroups)
+      .catch(() => setError(true));
+  }, []);
+
+  const loading = groups === null && !error;
+  const allPaintings = (groups ?? []).flatMap((g) => g.paintings);
+  const filters = ["All Works", ...(groups ?? []).map((g) => g.title)];
   const filtered =
     active === "All Works"
-      ? paintings
-      : paintings.filter((p) => p.collection === active);
+      ? allPaintings
+      : (groups ?? []).find((g) => g.title === active)?.paintings ?? [];
 
   return (
     <>
@@ -57,10 +66,22 @@ export default function Gallery() {
             ))}
           </div>
 
+          {/* Loading / empty states */}
+          {loading && (
+            <p className="text-center font-body text-[15px] text-fg-secondary">
+              Loading the gallery&hellip;
+            </p>
+          )}
+          {!loading && filtered.length === 0 && (
+            <p className="text-center font-body text-[15px] text-fg-secondary">
+              No paintings to show yet. Please check back soon.
+            </p>
+          )}
+
           {/* Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {filtered.map((painting) => (
-              <div key={painting.slug} className="flex flex-col">
+              <div key={painting.key} className="flex flex-col">
                 <div className="w-full aspect-[3/4] bg-border-subtle rounded-xl mb-4 overflow-hidden">
                   <img
                     src={painting.imageUrl}
