@@ -73,6 +73,8 @@ interface GonzoGalleryPhoto {
   sort_order: number | null;
   artwork_title: string | null;
   medium: string | null;
+  focal_x: number | null;
+  focal_y: number | null;
 }
 
 /** One painting, mapped into the shape the gallery/home grids expect. */
@@ -83,6 +85,9 @@ export interface GalleryPainting {
   medium: string;
   imageUrl: string;
   alt: string;
+  /** Crop focal point as percentages (default 50/50 = centered). */
+  focalX: number;
+  focalY: number;
 }
 
 /** A collection (Gonzo gallery) and its paintings, in sort order. */
@@ -133,6 +138,8 @@ export interface BlogPost {
   excerpt: string;
   content_html?: string;
   featured_image_url: string | null;
+  /** Crop focal point as percentages (default 50/50 = centered). */
+  featured_image_focal?: { x: number; y: number };
   category: { name: string; slug: string } | null;
   tags: string[];
   author: string | null;
@@ -198,6 +205,8 @@ export async function fetchGalleryGroups(): Promise<GalleryGroup[]> {
             medium: p.medium || "Oil on Canvas",
             imageUrl: p.url,
             alt: `${title} by Karen Wolfram`,
+            focalX: p.focal_x ?? 50,
+            focalY: p.focal_y ?? 50,
           };
         }),
       };

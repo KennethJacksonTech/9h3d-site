@@ -88,6 +88,9 @@ export default function Gallery() {
                     alt={painting.alt}
                     loading="lazy"
                     className="w-full h-full object-cover rounded-xl"
+                    style={{
+                      objectPosition: `${painting.focalX}% ${painting.focalY}%`,
+                    }}
                   />
                 </div>
                 <h3 className="font-heading text-[17px] font-semibold text-fg-primary">

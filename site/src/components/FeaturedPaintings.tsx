@@ -46,6 +46,9 @@ export default function FeaturedPaintings() {
                 alt={painting.alt}
                 loading="lazy"
                 className="w-full h-full object-cover rounded-xl"
+                style={{
+                  objectPosition: `${painting.focalX}% ${painting.focalY}%`,
+                }}
               />
             )}
           </div>

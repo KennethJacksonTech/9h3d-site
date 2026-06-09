@@ -45,3 +45,22 @@ body {
   color: var(--foreground-primary);
   font-family: var(--font-body);
 }
+
+/* Responsive 16:9 video embed. The Gonzo composer emits
+   <div class="video-embed"><iframe …></iframe></div> inside post
+   content_html (rendered via dangerouslySetInnerHTML on the post detail);
+   this wrapper makes the iframe fill the prose width. */
+.video-embed {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  margin: 1.5rem 0;
+}
+.video-embed iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  border-radius: 8px;
+}

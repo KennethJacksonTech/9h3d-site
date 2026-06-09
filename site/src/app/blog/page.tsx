@@ -19,6 +19,20 @@ function formatDate(iso: string): string {
   });
 }
 
+/**
+ * Excerpts can contain HTML (the composer copies the post body's tags). On a
+ * teaser card we want clean prose, not literal `<h2>` markup, so strip tags
+ * (and any double-escaped tags) and trim to a card-friendly length.
+ */
+function stripHtml(s: string): string {
+  const text = (s || "")
+    .replace(/<[^>]*>/g, "")
+    .replace(/&lt;[^&]*&gt;/g, "")
+    .replace(/\s+/g, " ")
+    .trim();
+  return text.length > 180 ? `${text.slice(0, 180).trimEnd()}…` : text;
+}
+
 export default function Blog() {
   const [posts, setPosts] = useState<BlogPost[] | null>(null);
   const [error, setError] = useState(false);
@@ -82,6 +96,9 @@ export default function Blog() {
                 src={featured.featured_image_url || FALLBACK_IMAGE}
                 alt={featured.title}
                 className="w-full h-full object-cover rounded-xl"
+                style={{
+                  objectPosition: `${featured.featured_image_focal?.x ?? 50}% ${featured.featured_image_focal?.y ?? 50}%`,
+                }}
               />
             </div>
             <div className="w-full md:w-1/2">
@@ -92,7 +109,7 @@ export default function Blog() {
                 {featured.title}
               </h2>
               <p className="font-body text-[16px] text-fg-secondary leading-[1.7] mb-4">
-                {featured.excerpt}
+                {stripHtml(featured.excerpt)}
               </p>
               <p className="font-body text-[13px] text-fg-secondary mb-6">
                 {formatDate(featured.published_at)}
@@ -128,6 +145,9 @@ export default function Blog() {
                       alt={post.title}
                       loading="lazy"
                       className="w-full h-full object-cover"
+                      style={{
+                        objectPosition: `${post.featured_image_focal?.x ?? 50}% ${post.featured_image_focal?.y ?? 50}%`,
+                      }}
                     />
                   </div>
                   <div className="p-6">
@@ -138,7 +158,7 @@ export default function Blog() {
                       {post.title}
                     </h3>
                     <p className="font-body text-[15px] text-fg-secondary leading-[1.7]">
-                      {post.excerpt}
+                      {stripHtml(post.excerpt)}
                     </p>
                   </div>
                 </Link>

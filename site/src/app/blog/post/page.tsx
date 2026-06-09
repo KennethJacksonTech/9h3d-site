@@ -95,6 +95,9 @@ function PostView() {
                 src={post.featured_image_url}
                 alt={post.title}
                 className="w-full rounded-xl mb-10 object-cover max-h-[460px]"
+                style={{
+                  objectPosition: `${post.featured_image_focal?.x ?? 50}% ${post.featured_image_focal?.y ?? 50}%`,
+                }}
               />
             )}
 
