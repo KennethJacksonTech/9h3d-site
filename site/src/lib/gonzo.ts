@@ -119,6 +119,52 @@ async function fetchJson<T>(url: string): Promise<T> {
   return res.json() as Promise<T>;
 }
 
+/* -------------------------------------------------------------------------- */
+/* Blog posts (content) API                                                    */
+/* -------------------------------------------------------------------------- */
+/**
+ * Shape matches the Gonzo content API (same as itK-SiteKit's `Post`). List and
+ * detail return the same object; the list may omit `content_html`.
+ */
+export interface BlogPost {
+  id: string;
+  title: string;
+  slug: string;
+  excerpt: string;
+  content_html?: string;
+  featured_image_url: string | null;
+  category: { name: string; slug: string } | null;
+  tags: string[];
+  author: string | null;
+  published_at: string;
+  reading_time: number;
+  seo?: { title?: string; description?: string; og_image_url?: string };
+}
+
+/**
+ * Fetch published posts (newest first per the API). Used both client-side by
+ * the blog index (live, no rebuild) and at build time by the detail route's
+ * generateStaticParams.
+ */
+export async function fetchPosts(limit = 100): Promise<BlogPost[]> {
+  const data = await fetchJson<{ posts: BlogPost[] }>(
+    `${GONZO_CONTENT_API}/api/content/${GONZO_CONTENT_ORG}/posts?limit=${limit}`,
+  );
+  return data.posts ?? [];
+}
+
+/** Fetch a single post by slug, or null if it doesn't exist. */
+export async function fetchPost(slug: string): Promise<BlogPost | null> {
+  try {
+    const data = await fetchJson<{ post: BlogPost }>(
+      `${GONZO_CONTENT_API}/api/content/${GONZO_CONTENT_ORG}/posts/${slug}`,
+    );
+    return data.post ?? null;
+  } catch {
+    return null;
+  }
+}
+
 /**
  * Fetch every gallery and its photos from Gonzo, mapped into render-ready
  * groups. Always live — no hardcoded titles or slugs, so new collections and
