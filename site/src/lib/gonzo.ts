@@ -172,6 +172,35 @@ export async function fetchPost(slug: string): Promise<BlogPost | null> {
   }
 }
 
+/* -------------------------------------------------------------------------- */
+/* Site settings (editable CTA section)                                        */
+/* -------------------------------------------------------------------------- */
+/** Editable home-page CTA banner, managed in Gonzo. */
+export interface CtaSection {
+  eyebrow?: string;
+  headline?: string;
+  body?: string;
+  button_label?: string;
+  button_url?: string;
+}
+
+/**
+ * Read the org's public settings from Gonzo (client-side, live — no rebuild).
+ * Returns an empty object on any failure so callers can fall back gracefully.
+ */
+export async function fetchSiteSettings(): Promise<
+  { cta_section?: CtaSection } & Record<string, unknown>
+> {
+  try {
+    const d = await fetchJson<{ settings?: Record<string, unknown> }>(
+      `${GONZO_CONTENT_API}/api/content/${GONZO_CONTENT_ORG}/settings`,
+    );
+    return (d.settings ?? {}) as { cta_section?: CtaSection };
+  } catch {
+    return {};
+  }
+}
+
 /**
  * Fetch every gallery and its photos from Gonzo, mapped into render-ready
  * groups. Always live — no hardcoded titles or slugs, so new collections and

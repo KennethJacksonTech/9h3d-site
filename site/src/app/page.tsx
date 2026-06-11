@@ -1,5 +1,6 @@
 import Link from "next/link";
 import FeaturedPaintings from "@/components/FeaturedPaintings";
+import CtaSection from "@/components/CtaSection";
 
 export default function Home() {
   return (
@@ -95,22 +96,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* CTA Banner */}
-      <section className="bg-surface-inverse py-20 md:py-24 px-6 text-center">
-        <h2 className="font-heading text-[36px] md:text-[42px] font-bold text-fg-inverse mb-4">
-          Called to Create
-        </h2>
-        <p className="font-body text-[17px] text-border-subtle max-w-xl mx-auto leading-[1.7] mb-10">
-          Interested in commissioning a painting or attending a workshop? Karen
-          would love to hear from you.
-        </p>
-        <Link
-          href="/contact"
-          className="inline-block bg-accent-secondary text-fg-primary font-body text-[14px] font-semibold tracking-[1px] px-6 py-3 rounded-lg hover:opacity-90 transition-opacity"
-        >
-          Get in Touch
-        </Link>
-      </section>
+      {/* CTA Banner — editable via Gonzo cta_section */}
+      <CtaSection />
     </>
   );
 }
