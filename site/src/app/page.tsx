@@ -1,8 +1,15 @@
 import Link from "next/link";
 import FeaturedPaintings from "@/components/FeaturedPaintings";
 import CtaSection from "@/components/CtaSection";
+import NewsletterSection from "@/components/NewsletterSection";
+import { getNewsletterSettings } from "@/lib/gonzo";
+import { resolveNewsletter } from "@/lib/newsletter";
 
-export default function Home() {
+export default async function Home() {
+  // Mailing-list copy, read at build time. Null (no header authored in Gonzo)
+  // means the band renders nothing at all.
+  const newsletter = resolveNewsletter(await getNewsletterSettings());
+
   return (
     <>
       {/* Hero */}
@@ -95,6 +102,10 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Mailing list — copy editable via Gonzo newsletter_* settings. Sits
+          above the CTA band so the dark CTA still runs into the dark footer. */}
+      {newsletter && <NewsletterSection config={newsletter} />}
 
       {/* CTA Banner — editable via Gonzo cta_section */}
       <CtaSection />

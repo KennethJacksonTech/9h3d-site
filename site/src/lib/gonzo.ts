@@ -62,6 +62,13 @@ const GONZO_CONTENT_API =
 const GONZO_CONTENT_ORG =
   process.env.NEXT_PUBLIC_GONZO_ORG || "walter-wolfram";
 
+/**
+ * Exported for client components that POST to Gonzo (the newsletter form).
+ * Safe in the browser for the reason above: both are `NEXT_PUBLIC_*`-derived
+ * and inlined at build.
+ */
+export { GONZO_CONTENT_API, GONZO_CONTENT_ORG };
+
 interface GonzoGalleryListItem {
   title: string;
   slug: string;
@@ -196,6 +203,45 @@ export async function fetchSiteSettings(): Promise<
       `${GONZO_CONTENT_API}/api/content/${GONZO_CONTENT_ORG}/settings`,
     );
     return (d.settings ?? {}) as { cta_section?: CtaSection };
+  } catch {
+    return {};
+  }
+}
+
+/* -------------------------------------------------------------------------- */
+/* Mailing list (settings, read at BUILD time)                                 */
+/* -------------------------------------------------------------------------- */
+/** The `newsletter_*` slice of the org's public settings. */
+export interface NewsletterSettings {
+  newsletter_header?: string | null;
+  newsletter_body?: string | null;
+  newsletter_cta_label?: string | null;
+  newsletter_fields?: string[] | null;
+}
+
+/**
+ * Read the newsletter copy SERVER-SIDE, mirroring `getForm()` above.
+ *
+ * Deliberately build-time, unlike `fetchSiteSettings()` which reads the same
+ * endpoint in the browser for the CTA band: the mailing-list copy is a heading
+ * and a sentence that want to be in the emitted HTML — present for crawlers and
+ * for anyone with JS off — rather than popping in after hydration. The trade is
+ * that this copy, and the on/off gate, freeze at build under `output: "export"`
+ * (see the gallery docblock): changing `newsletter_header` in Gonzo needs a
+ * redeploy to take effect. Accepted for launch.
+ *
+ * `revalidate` is inert under static export — it is written so this keeps
+ * working unchanged if the site ever moves to ISR.
+ */
+export async function getNewsletterSettings(): Promise<NewsletterSettings> {
+  try {
+    const res = await fetch(
+      `${GONZO_CONTENT_API}/api/content/${GONZO_CONTENT_ORG}/settings`,
+      { next: { revalidate: 3600 } },
+    );
+    if (!res.ok) return {};
+    const data = (await res.json()) as { settings?: NewsletterSettings };
+    return data.settings ?? {};
   } catch {
     return {};
   }
