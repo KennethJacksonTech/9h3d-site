@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { Playfair_Display, Inter } from "next/font/google";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
@@ -33,6 +34,9 @@ export default function RootLayout({
       className={`${playfair.variable} ${inter.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col font-body">
+        {/* Google Analytics — org slug: walter-wolfram; value mirrors site_settings.analytics_id */}
+        <Script src="https://www.googletagmanager.com/gtag/js?id=G-W503MFH1Z8" strategy="afterInteractive" />
+        <Script id="ga-init" strategy="afterInteractive">{`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-W503MFH1Z8');`}</Script>
         <Navigation />
         <main className="flex-1">{children}</main>
         <Footer />
